@@ -4,6 +4,7 @@ package com.example.vocabularybook.controller
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.WARN
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vocabularybook.R
 import com.example.vocabularybook.controller.fregment.first_fragment
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.first_content, first_fragment())
                 .commit()
         }
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar()?.hide()
+        }
+
     }
 
     private fun isLand(): Boolean {
@@ -34,11 +40,11 @@ class MainActivity : AppCompatActivity() {
 
         if (ori == Configuration.ORIENTATION_LANDSCAPE) {
             //横屏
-            Log.d("isLand","横向")
+            Log.d("isLand", "横向")
             return true
         } else if (ori == Configuration.ORIENTATION_PORTRAIT) {
             //竖屏
-            Log.d("isLand","竖屏")
+            Log.d("isLand", "竖屏")
             return false
         }
         return false

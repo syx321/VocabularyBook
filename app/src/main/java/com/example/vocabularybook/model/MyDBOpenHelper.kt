@@ -9,7 +9,7 @@ import com.example.vocabularybook.util.AppWords
 
 class MyDBOpenHelper : SQLiteOpenHelper {
 
-    constructor(context: Context?, name: String?, factory: CursorFactory?, version: Int) :
+    constructor(context: Context?, name: String?, factory: CursorFactory?, version: Int?) :
             super(
                 context,
                 "my.db",
