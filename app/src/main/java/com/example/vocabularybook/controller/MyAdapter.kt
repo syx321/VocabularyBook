@@ -1,5 +1,6 @@
 package com.example.vocabularybook.controller
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,13 +16,13 @@ class MyAdapter(val itemList: ArrayList<listItem>) : RecyclerView.Adapter<MyAdap
     }
 
     override fun onBindViewHolder(holder: MyAdapter.ViewHolder, position: Int) {
-        var listItem = itemList.get(position)
+        val listItem = itemList.get(position)
         holder.english.text = listItem.english
         holder.time.text = listItem.time
     }
 
     override fun getItemCount(): Int {
-        return itemList.count()
+        return itemList.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

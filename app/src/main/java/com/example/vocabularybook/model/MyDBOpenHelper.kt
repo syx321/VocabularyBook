@@ -3,7 +3,7 @@ package com.example.vocabularybook.model
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteDatabase.CursorFactory
+import android.database.sqlite.SQLiteDatabase.*
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import com.example.vocabularybook.util.AppWords
@@ -14,7 +14,7 @@ class MyDBOpenHelper : SQLiteOpenHelper {
     constructor(context: Context?, name: String?, factory: CursorFactory?, version: Int?) :
             super(
                 context,
-                "my.db",
+                "note",
                 null,
                 1
             )

@@ -35,19 +35,21 @@ class first_fragment : Fragment() {
     override fun onStart() {
         super.onStart()
         initItem()
-
         val myAdapter = MyAdapter(itemList)
         val listview = view!!.findViewById<RecyclerView>(R.id.main_list)
         listview.layoutManager = LinearLayoutManager(this.context)
         listview.adapter = myAdapter
+        listview.setOnClickListener(View.OnClickListener {
 
+        })
     }
 
-    @SuppressLint("Range")
+    @SuppressLint("Recycle", "Range")
     fun initItem() {
         val dbOpenHelper = MyDBOpenHelper(this.context,null,null,null)
-        val db: SQLiteDatabase = dbOpenHelper.readableDatabase
+        val db: SQLiteDatabase = dbOpenHelper.writableDatabase
         val cursor: Cursor = db.rawQuery(SQL_SELECT_ALL,null)
+//        db.execSQL("insert into note values(?,?,?)", arrayOf("three","3","2021/10/7"))
 
         //TODO problem
         while (cursor.moveToNext()) {

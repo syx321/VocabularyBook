@@ -27,18 +27,15 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="ac80cabe-bfb8-4eae-a286-25d701bf2f10">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+    <connection id="60ff6d51-85bb-48a9-a305-8e5b5cf43cd3">
+      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[select * from note]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="ac80cabe-bfb8-4eae-a286-25d701bf2f10" />
-  </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="ac80cabe-bfb8-4eae-a286-25d701bf2f10" dataset="main.note" active-filter-id="EMPTY_FILTER" />
+    <connection id="60ff6d51-85bb-48a9-a305-8e5b5cf43cd3" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -66,13 +63,13 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="ac80cabe-bfb8-4eae-a286-25d701bf2f10" active="true">
+      <connection id="60ff6d51-85bb-48a9-a305-8e5b5cf43cd3" active="true">
         <database>
           <name value="Connection" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
-          <database-version value="3.3" />
+          <database-version value="9999.0" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
@@ -81,7 +78,7 @@
           <port value="" />
           <database value="" />
           <files>
-            <file path="$USER_HOME$/Downloads/my.db" schema="main" />
+            <file path="$PROJECT_DIR$/../../../my.db" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />
