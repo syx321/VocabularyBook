@@ -1,30 +1,37 @@
 package com.example.vocabularybook.controller
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
+import android.widget.*
+import androidx.recyclerview.widget.RecyclerView
 import com.example.vocabularybook.R
 import com.example.vocabularybook.model.listItem
 
-class MyAdapter(activity: Activity, val resourceId: Int, data: List<listItem>) :
-    ArrayAdapter<listItem>(activity, resourceId, data) {
+class MyAdapter(val itemList: ArrayList<listItem>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter.ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
+        return ViewHolder(view)
+    }
 
-    @SuppressLint("ViewHolder")
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = LayoutInflater.from(context).inflate(resourceId, parent, false)
-        val english = view.findViewById<TextView>(R.id.item_content)
-        val time = view.findViewById<TextView>(R.id.item_time)
+    override fun onBindViewHolder(holder: MyAdapter.ViewHolder, position: Int) {
+        var listItem = itemList.get(position)
+        holder.english.text = listItem.english
+        holder.time.text = listItem.time
+    }
 
-        val item = getItem(position)
-        if (item != null) {
-            english.text = item.english
-            time.text = item.time
+    override fun getItemCount(): Int {
+        return itemList.count()
+    }
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var english: TextView
+        var time: TextView
+
+        init {
+            english = itemView.findViewById(R.id.item_content)
+            time = itemView.findViewById(R.id.item_time)
         }
-        return view
     }
 
 }
