@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,10 +40,9 @@ class first_fragment : Fragment() {
         val listview = view!!.findViewById<RecyclerView>(R.id.main_list)
         listview.layoutManager = LinearLayoutManager(this.context)
         listview.adapter = myAdapter
-        listview.setOnClickListener(View.OnClickListener {
-
-        })
     }
+
+
 
     @SuppressLint("Recycle", "Range")
     fun initItem() {

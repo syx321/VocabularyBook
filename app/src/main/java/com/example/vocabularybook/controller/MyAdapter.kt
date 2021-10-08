@@ -2,6 +2,7 @@ package com.example.vocabularybook.controller
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -19,6 +20,11 @@ class MyAdapter(val itemList: ArrayList<listItem>) : RecyclerView.Adapter<MyAdap
         val listItem = itemList.get(position)
         holder.english.text = listItem.english
         holder.time.text = listItem.time
+
+        holder.itemView.setOnClickListener(View.OnClickListener {
+            Log.d("onClick", position.toString())
+
+        })
     }
 
     override fun getItemCount(): Int {
