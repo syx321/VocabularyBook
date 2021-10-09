@@ -23,7 +23,6 @@ class MyAdapter(val itemList: ArrayList<listItem>) : RecyclerView.Adapter<MyAdap
 
         holder.itemView.setOnClickListener(View.OnClickListener {
             Log.d("onClick", position.toString())
-
         })
     }
 
