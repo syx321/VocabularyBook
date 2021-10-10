@@ -2,6 +2,7 @@ package com.example.vocabularybook.controller.fregment
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
@@ -55,7 +56,24 @@ class FirstFragment : Fragment() {
         val obj = object : OnItemClickLitener {
             override fun onItemClick(view: View?, position: Int) {
                 Log.d("OnClickPosition",position.toString())
-
+                val fragment = SecondFragment()
+                fragment.SetMethod(
+                    itemList.get(position).id,
+                    "update",
+                )
+                if (isLand()) {
+                    activity!!.supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.second_content, fragment, null)
+                        .addToBackStack(null)
+                        .commit()
+                } else {
+                    activity!!.supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.first_content, fragment, null)
+                        .addToBackStack(null)
+                        .commit()
+                }
             }
 
             override fun onItemLongClick(view: View?, position: Int) {
@@ -75,12 +93,30 @@ class FirstFragment : Fragment() {
 
         while (cursor.moveToNext()) {
             val listItem = listItem(
+                cursor.getInt(cursor.getColumnIndex("id")),
                 cursor.getString(cursor.getColumnIndex("English")),
                 cursor.getString(cursor.getColumnIndex("time"))
             )
             itemList.add(listItem)
 //            Log.d("listItem", listItem.english + " " + listItem.time)
         }
+    }
+
+    fun isLand(): Boolean {
+        val mConfiguration = this.resources.configuration //获取设置的配置信息
+
+        val ori = mConfiguration.orientation //获取屏幕方向
+
+        if (ori == Configuration.ORIENTATION_LANDSCAPE) {
+            //横屏
+            Log.d("isLand", "横向")
+            return true
+        } else if (ori == Configuration.ORIENTATION_PORTRAIT) {
+            //竖屏
+            Log.d("isLand", "竖屏")
+            return false
+        }
+        return false
     }
 }
 

@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="新建"
+        android:text="更改"
         android:textSize="20sp"
         android:background="#E3F2FD"/>
 

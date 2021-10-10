@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,13 +27,22 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
+        dbOpenHelper = MyDBOpenHelper(this, null, null, null)
+        db = dbOpenHelper.writableDatabase
+        this.context = this
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.notelist)
-        dbOpenHelper = MyDBOpenHelper(this, null, null, null)
-        db= dbOpenHelper.writableDatabase
+
         val btn_create = this.findViewById<Button>(R.id.btn_new)
         btn_create.setOnClickListener(View.OnClickListener {
-            val intent: Intent = Intent(this,AddNewNote::class.java)
+            val intent: Intent = Intent(this, AddNewNote::class.java)
+            startActivity(intent)
+        })
+
+        val btn_search = this.findViewById<Button>(R.id.btn_search)
+        btn_search.setOnClickListener(View.OnClickListener {
+            val intent: Intent = Intent(this, Search::class.java)
             startActivity(intent)
         })
 
@@ -40,7 +50,6 @@ class MainActivity : AppCompatActivity() {
             getSupportActionBar()?.hide()
         }
 
-        this.context = this
         Log.d("MainActivity", "init")
     }
 
@@ -54,16 +63,24 @@ class MainActivity : AppCompatActivity() {
 
         val obj = object : MyAdapter.OnItemClickLitener {
             override fun onItemClick(view: View?, position: Int) {
-                Log.d("OnClickPosition",position.toString())
-                val intent = Intent(context,ShowNote::class.java)
-                intent.putExtra("english",itemList.get(position).english)
+                Log.d("OnClickPosition", position.toString())
+                val intent = Intent(context, ShowNote::class.java)
+                intent.putExtra("id", itemList.get(position).id)
+//                Log.d("sendId",itemList.get(position).id.toString())
                 startActivity(intent)
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun onItemLongClick(view: View?, position: Int) {
-                Log.d("LongClickPosition",position.toString())
+                Log.d("LongClickPosition", position.toString())
+                val listItem = itemList.get(position)
+                listItem.id
+                db.execSQL("delete from note where id = ?", arrayOf(listItem.id))
+                itemList.remove(listItem)
+                Toast.makeText(context, "删除" + itemList.get(position).english, Toast.LENGTH_SHORT).show()
+                myAdapter.notifyDataSetChanged()
+                listview.adapter = myAdapter
             }
-
         }
         myAdapter.setOnItemClickLitener(obj)
         listview.adapter = myAdapter
@@ -76,6 +93,7 @@ class MainActivity : AppCompatActivity() {
 
         while (cursor.moveToNext()) {
             val listItem = listItem(
+                cursor.getInt(cursor.getColumnIndex("id")),
                 cursor.getString(cursor.getColumnIndex("English")),
                 cursor.getString(cursor.getColumnIndex("time"))
             )

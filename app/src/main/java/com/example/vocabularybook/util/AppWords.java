@@ -6,6 +6,6 @@ public class AppWords {
     public static String SQL_DROP_DATABASE = "drop table note";
     public static String SQL_DELETE_DATABASE = "delete from note where English = ?";
     public static String SQL_INSERT_DATABASE = "insert into note(English,Chinese,time) values(?,?,?)";
-    public static String SQL_UPDATE_DATABASE = "update note set Chinese = ? where English = ?";
+    public static String SQL_UPDATE_DATABASE = "update note set Chinese = ? where id = ?";
     public static String SQL_SELECT_ALL = "select * from note";
 }
