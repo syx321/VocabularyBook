@@ -1,11 +1,11 @@
-package com.example.vocabularybook.model
+package com.example.vocabularybook.util
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteDatabase.*
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import com.example.vocabularybook.util.AppWords.SQL_CREATE_DATABASE
+import com.example.vocabularybook.util.AppWords.*
 
 class MyDBOpenHelper : SQLiteOpenHelper {
 
@@ -20,6 +20,7 @@ class MyDBOpenHelper : SQLiteOpenHelper {
 
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
         sqLiteDatabase.execSQL(SQL_CREATE_DATABASE)
+//        sqLiteDatabase.execSQL(SQL_DROP_DATABASE)
         Log.d("MyDBOpenHelper", "onCreate")
     }
 

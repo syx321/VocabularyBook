@@ -6,7 +6,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vocabularybook.R
-import com.example.vocabularybook.model.MyDBOpenHelper
+import com.example.vocabularybook.util.MyDBOpenHelper
 import com.example.vocabularybook.util.AppWords.SQL_INSERT_DATABASE
 import java.util.*
 
@@ -24,7 +24,7 @@ class AddNewNote : AppCompatActivity() {
             val calendar = Calendar.getInstance()
             val date: String = calendar.get(Calendar.YEAR).toString() + "/" +
                     (calendar.get(Calendar.MONTH) + 1) + "/" +
-                    calendar.get(Calendar.DATE)
+                    calendar.get(Calendar.DAY_OF_MONTH)
             Log.d("day",calendar.get(Calendar.DATE).toString())
             db.execSQL(
                 SQL_INSERT_DATABASE, arrayOf(

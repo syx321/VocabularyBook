@@ -7,7 +7,6 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
-import com.example.vocabularybook.model.MyDBOpenHelper
 
 class MyProvider : ContentProvider() {
     private val uriMatcher: UriMatcher = UriMatcher(UriMatcher.NO_MATCH)

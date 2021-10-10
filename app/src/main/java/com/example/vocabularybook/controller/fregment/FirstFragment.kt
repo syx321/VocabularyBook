@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vocabularybook.R
 import com.example.vocabularybook.controller.MyAdapter
 import com.example.vocabularybook.controller.AddNewNote
-import com.example.vocabularybook.model.MyDBOpenHelper
+import com.example.vocabularybook.util.MyDBOpenHelper
 import com.example.vocabularybook.model.listItem
 
 import com.example.vocabularybook.controller.MyAdapter.OnItemClickLitener
@@ -33,7 +33,7 @@ class FirstFragment : Fragment() {
     ): View {
         dbOpenHelper = MyDBOpenHelper(this.context, null, null, null)
         db= dbOpenHelper.writableDatabase
-        val view: View = inflater.inflate(R.layout.fragment_notelist, container, false)
+        val view: View = inflater.inflate(R.layout.notelist, container, false)
         val btn_create = view.findViewById<Button>(R.id.btn_new)
         btn_create.setOnClickListener(View.OnClickListener {
             val intent: Intent = Intent(context,AddNewNote::class.java)

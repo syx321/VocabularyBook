@@ -12,7 +12,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.vocabularybook.R
-import com.example.vocabularybook.model.MyDBOpenHelper
+import com.example.vocabularybook.util.MyDBOpenHelper
 import com.example.vocabularybook.util.AppWords.SQL_UPDATE_DATABASE
 
 class SecondFragment : Fragment() {
@@ -22,7 +22,7 @@ class SecondFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_compose, container, false)
+        val view: View = inflater.inflate(R.layout.compose, container, false)
         Log.d("second_fregment", "init")
         val dbOpenHelper = MyDBOpenHelper(view.context, null, null, null)
         val db = dbOpenHelper.writableDatabase

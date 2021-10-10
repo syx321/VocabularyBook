@@ -23,22 +23,6 @@ class MyAdapter(val itemList: ArrayList<listItem>) : RecyclerView.Adapter<MyAdap
         holder.english.text = listItem.english
         holder.time.text = listItem.time
 
-//        holder.itemView.setOnClickListener(View.OnClickListener {
-//            Log.d("onClick", position.toString())
-//            val intent = Intent(parent.context, MainActivity::class.java)
-//            intent.putExtra("english", listItem.english)
-//            parent.context?.startActivity(intent)
-//        })
-
-//        holder.itemView.setOnLongClickListener(View.OnLongClickListener {
-//            var dbOpenHelper: MyDBOpenHelper = MyDBOpenHelper(parent.context, null, null, null)
-//            var db: SQLiteDatabase = dbOpenHelper.writableDatabase
-//            Log.d("onLongClick", position.toString())
-//            db.execSQL(SQL_DELETE_DATABASE, arrayOf(listItem.english))
-//
-//            true
-//        })
-
         holder.itemView.setOnClickListener(View.OnClickListener() {
             mOnItemClickLitener.onItemClick(holder.itemView, position);
         })
