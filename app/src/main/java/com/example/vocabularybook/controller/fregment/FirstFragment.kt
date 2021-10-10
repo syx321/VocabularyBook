@@ -17,10 +17,11 @@ import com.example.vocabularybook.controller.AddNewNote
 import com.example.vocabularybook.model.MyDBOpenHelper
 import com.example.vocabularybook.model.listItem
 
-import com.example.vocabularybook.util.AppWords.*
+import com.example.vocabularybook.controller.MyAdapter.OnItemClickLitener
+import com.example.vocabularybook.util.AppWords.SQL_SELECT_ALL
 
-class first_fragment : Fragment() {
-    private val itemList = ArrayList<listItem>()
+
+class FirstFragment : Fragment() {
     lateinit var dbOpenHelper: MyDBOpenHelper
     lateinit var db: SQLiteDatabase
 
@@ -33,7 +34,6 @@ class first_fragment : Fragment() {
         dbOpenHelper = MyDBOpenHelper(this.context, null, null, null)
         db= dbOpenHelper.writableDatabase
         val view: View = inflater.inflate(R.layout.fragment_notelist, container, false)
-        initItem()
         val btn_create = view.findViewById<Button>(R.id.btn_new)
         btn_create.setOnClickListener(View.OnClickListener {
             val intent: Intent = Intent(context,AddNewNote::class.java)
@@ -46,15 +46,30 @@ class first_fragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        val itemList = ArrayList<listItem>()
+        initItem(itemList)
         val myAdapter = MyAdapter(itemList)
         val listview = view!!.findViewById<RecyclerView>(R.id.main_list)
         listview.layoutManager = LinearLayoutManager(this.context)
+
+        val obj = object : OnItemClickLitener {
+            override fun onItemClick(view: View?, position: Int) {
+                Log.d("OnClickPosition",position.toString())
+
+            }
+
+            override fun onItemLongClick(view: View?, position: Int) {
+                Log.d("LongClickPosition",position.toString())
+            }
+
+        }
+        myAdapter.setOnItemClickLitener(obj)
         listview.adapter = myAdapter
     }
 
 
     @SuppressLint("Recycle", "Range")
-    fun initItem() {
+    fun initItem(itemList: ArrayList<listItem>) {
         val cursor: Cursor = db.rawQuery(SQL_SELECT_ALL, null)
 //        db.execSQL("insert into note values(?,?,?)", arrayOf("three","3","2021/10/7"))
 
@@ -64,7 +79,7 @@ class first_fragment : Fragment() {
                 cursor.getString(cursor.getColumnIndex("time"))
             )
             itemList.add(listItem)
-            Log.d("listItem", listItem.english + " " + listItem.time)
+//            Log.d("listItem", listItem.english + " " + listItem.time)
         }
     }
 }

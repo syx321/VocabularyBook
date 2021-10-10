@@ -1,13 +1,11 @@
 package com.example.vocabularybook.model
 
-import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteDatabase.*
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import com.example.vocabularybook.util.AppWords
-import com.example.vocabularybook.util.AppWords.*
+import com.example.vocabularybook.util.AppWords.SQL_CREATE_DATABASE
 
 class MyDBOpenHelper : SQLiteOpenHelper {
 

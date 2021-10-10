@@ -4,13 +4,12 @@ package com.example.vocabularybook.controller
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.WARN
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vocabularybook.R
-import com.example.vocabularybook.controller.fregment.first_fragment
-import com.example.vocabularybook.controller.fregment.second_fragment
+import com.example.vocabularybook.controller.fregment.FirstFragment
+import com.example.vocabularybook.controller.fregment.SecondFragment
 
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,22 +17,21 @@ class MainActivity : AppCompatActivity() {
 
         if (isLand()) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.first_content, first_fragment())
-                .replace(R.id.second_content, second_fragment())
+                .replace(R.id.first_content, FirstFragment())
+                .replace(R.id.second_content, SecondFragment())
                 .commit()
         } else {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.first_content, first_fragment())
+                .replace(R.id.first_content, FirstFragment())
                 .commit()
         }
 
         if (getSupportActionBar() != null) {
             getSupportActionBar()?.hide()
         }
-
     }
 
-    private fun isLand(): Boolean {
+    fun isLand(): Boolean {
         val mConfiguration = this.resources.configuration //获取设置的配置信息
 
         val ori = mConfiguration.orientation //获取屏幕方向
